@@ -40,4 +40,13 @@ public class ProdutoService {
                 .map(ProdutoResponseDTO::new)
                 .toList();
     }
+
+    public List<Produto> getProdutosPorIds(List<Long> idsProdutos){
+        var produtos = produtoRepository.getListaDeProdutoPorIds(idsProdutos);
+        if (!produtos.isEmpty()){
+            return produtos;
+        }else {
+            throw new RuntimeException("Produtos nao localizados!");
+        }
+    }
 }
