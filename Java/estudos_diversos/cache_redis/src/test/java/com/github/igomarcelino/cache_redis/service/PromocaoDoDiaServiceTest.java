@@ -1,6 +1,7 @@
 package com.github.igomarcelino.cache_redis.service;
 
 import com.github.igomarcelino.cache_redis.dto.produto.ProdutoRequestDTO;
+import com.github.igomarcelino.cache_redis.dto.produto.ProdutosParaPromocao;
 import com.github.igomarcelino.cache_redis.dto.promocaododia.PromocaoDoDiaRequestDTO;
 import com.github.igomarcelino.cache_redis.repository.ProdutoRepository;
 import com.github.igomarcelino.cache_redis.repository.PromocaoRepository;
@@ -63,8 +64,9 @@ class PromocaoDoDiaServiceTest {
         );
         var promocaoCriada = promocaoDoDiaService.save(dtoRequest);
 
-        var idsProdutos = criarProdutos();
-        var promocaoAlterada = promocaoDoDiaService.inserirProdutosNaPromocao(promocaoCriada.id(),idsProdutos);
+        ProdutosParaPromocao produtosParaPromocao = new ProdutosParaPromocao(criarProdutos());
+
+        var promocaoAlterada = promocaoDoDiaService.inserirProdutosNaPromocao(promocaoCriada.id(),produtosParaPromocao);
         assertThat(promocaoAlterada).isNotNull();
         assertThat(promocaoAlterada.produtos()).isNotEmpty();
     }

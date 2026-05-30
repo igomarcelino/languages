@@ -1,5 +1,6 @@
 package com.github.igomarcelino.cache_redis.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -18,6 +19,7 @@ public class Produto {
 
     @ManyToOne
     @JoinColumn(name = "idPromocao")
+    @JsonIgnore
     private PromocaoDoDia promocaoDoDia;
 
     public Long getIdProduto() {

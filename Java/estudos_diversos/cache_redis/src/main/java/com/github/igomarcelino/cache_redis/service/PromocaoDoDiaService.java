@@ -1,5 +1,6 @@
 package com.github.igomarcelino.cache_redis.service;
 
+import com.github.igomarcelino.cache_redis.dto.produto.ProdutosParaPromocao;
 import com.github.igomarcelino.cache_redis.dto.promocaododia.PromocaoDoDiaRequestDTO;
 import com.github.igomarcelino.cache_redis.dto.promocaododia.PromocaoDoDiaResponseDTO;
 import com.github.igomarcelino.cache_redis.entity.model.Produto;
@@ -33,9 +34,9 @@ public class PromocaoDoDiaService {
     }
 
     @Transactional
-   public PromocaoDoDiaResponseDTO inserirProdutosNaPromocao(Long idPromocao,List<Long> idProdutos){
+   public PromocaoDoDiaResponseDTO inserirProdutosNaPromocao(Long idPromocao, ProdutosParaPromocao idsProdutos){
         var promocao = getEntityById(idPromocao);
-        var produtos = produtoService.getProdutosPorIds(idProdutos);
+        var produtos = produtoService.getProdutosPorIds(idsProdutos.idsProdutos());
         produtos.forEach(promocao::adicionaProdutoNaPromocao);
         return new PromocaoDoDiaResponseDTO(promocao);
     }

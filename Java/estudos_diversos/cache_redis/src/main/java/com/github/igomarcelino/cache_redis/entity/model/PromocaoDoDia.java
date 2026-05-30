@@ -22,7 +22,7 @@ public class PromocaoDoDia {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dataPromocao;
 
-    @OneToMany(mappedBy = "idProduto", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "promocaoDoDia", fetch = FetchType.LAZY)
     List<Produto> produtos;
 
     public Long getIdPromocao() {
